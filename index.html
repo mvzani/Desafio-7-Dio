@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Moderno - Desafio</title>
+    <style>
+        /* CSS DE ESTRUTURAÇÃO */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.5;
+            color: #333;
+            background-color: white;     
+        }
+
+        body {
+    position: relative; /* Necessário para posicionar a marca d'água */
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.5;
+    color: #333;
+    margin: 0;
+}
+
+/* Este é o comando que cria a marca d'água */
+body::before {
+    content: "";
+    background-image: url('https://wallpapers.com/images/high/game-of-thrones-background-rum7bos2m6kons72.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* COMANDOS PARA OCUPAR A TELA TODA */
+    background-size: cover; /* Estica a imagem para preencher cada canto da tela */
+    background-attachment: fixed; /* Mantém a imagem fixa enquanto você rola o texto */
+    
+    opacity: 0.1; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Usa 100% da largura da janela do navegador */
+    height: 100vh; /* Usa 100% da altura da janela do navegador */
+    z-index: -1; 
+}
+
+        /* Topo com Logo */
+        header {
+            width: 100%;
+            padding: 1px;
+            border-bottom: 1px solid #ddd;
+        }    
+
+        header img {
+        width: 100%;
+        height: auto;
+        display: block;
+        /* Este é o comando que arredonda as pontas */
+        border-radius: 5px; 
+        }
+
+        /* Barra de separação [cite: 7] */
+        .bar {
+            height: 5px;
+            background-color: #f4f4f4;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Container que une as 3 colunas [cite: 4, 11] */
+        .main-wrapper {
+            display: flex; /* Comando que coloca as colunas lado a lado */
+            min-height: 80vh;
+        }
+
+        .main-content article p {
+            text-indent: 10px;
+            margin-bottom: 3px; /* Mantém um espaço entre um parágrafo e outro */
+        }
+
+        /* Aplica o justificado apenas nos parágrafos do conteúdo principal */
+        .main-content p {
+            text-align: justify;
+            margin-bottom: 15px; /* Adiciona um espaço entre os parágrafos */
+        }
+
+        /* Coluna 1: Links (Esquerda) */
+        .sidebar {
+            flex: 0.68; /* Proporção menor */
+            padding: 20px;
+            border-right: 1px solid #ddd;
+        
+    
+        /* COMANDOS PARA TRAVAR */
+        position: sticky;
+        top: 0;
+        height: 100vh; /* Faz a barra ocupar a altura da tela */
+        overflow-y: auto; /* Se o menu for muito grande, cria uma rodinha interna só nele */
+        }
+
+        /* Coluna 3: Âncoras (Direita) */
+        .anchors {
+        flex: 1;
+        padding: 20px;
+        border-left: 1px solid #ddd;
+    
+        /* COMANDOS PARA TRAVAR */
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        }
+
+        /* Coluna 2: Conteúdo (Centro) [cite: 11] */
+        .main-content {
+            flex: 6; /* Proporção maior para o artigo */
+            padding: 10px;
+        }
+
+        /* Isso faz com que apenas as listas dentro do artigo mostrem o ponto */
+        .main-content ul {
+            list-style: disc;
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        /* Isso cria um espaço de 20 pixels entre cada parágrafo do conteúdo */
+        .main-content p {
+        margin-bottom: 20px;
+        }
+
+        /* Coluna 3: Âncoras (Direita) [cite: 4] */
+        .anchors {
+            flex: 0.7; /* Proporção menor */
+            padding: 10px;
+            border-left: 1px solid #ddd;
+
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        /* Imagens Responsivas [cite: 10] */
+        figure img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .img-personagens {
+            border-radius: 20px; /* Altere o número para aumentar ou diminuir o arredondado */
+            border: 2px solid #ddd; /* Opcional: adiciona uma bordinha fina */
+            margin-bottom: 20px;
+        }
+
+        .img-sinopsedet {
+            border-radius: 20px;
+            border: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: #eee;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Estilo básico de listas */
+        ul {
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+
+        a:hover {
+            color: red;
+            transition: 0.3s;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="logo">
+            <img src="https://images.tcdn.com.br/img/img_prod/910692/1660940889_banner-categoria-got.jpg" alt="Logotipo do Projeto Wikipedia Moderno">
+        </div>
+    </header>
+
+    <div class="bar"></div>
+
+    <div class="main-wrapper">
+
+        <nav class="sidebar" aria-label="Menu Lateral">
+            <h3>Série de TV.</h3>
+            <ul>
+                <li><a href="https://www.primevideo.com/-/pt/detail/Game-of-Thrones/0Q7JDDCB7M9RRG77XMHKYESJTH" target="_blank" rel="noopener noreferrer">Game of Thrones.</a></li>
+                <li><a href="https://www.tudocelular.com/curiosidade/noticias/n101486/game-of-thrones-protagonistas.html" target="_blank" rel="noopener noreferrer">Elenco.</a></li>
+                <li><a href="https://www.purebreak.com.br/noticias/-game-of-thrones-101-curiosidades-sobre-a-serie-que-revolucionou-a-televisao/85447" target="_blank" rel="noopener noreferrer">Curiosidades.</a></li>
+            </ul>
+            <br>
+            <h3>Navegação.</h3>
+            <ul>
+                <li><a href="index.html">Início.</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <article>                
+                <h2 id="resumos">Resumos da Série.</h2>
+                <p>Game of Thrones é uma série épica de fantasia da HBO, baseada nos livros As Crônicas de Gelo e Fogo de George R. R. Martin. A trama se passa nos continentes de Westeros e Essos, onde diversas famílias nobres lutam pelo controle do Trono de Ferro.</p>
+                <p>O enredo é dividido em três arcos principais que se conectam ao longo das oito temporadas:</p><br>
+                                
+                <h4>1. A Guerra dos Reis (Política).</h4>
+                <p>Após a morte do Rei Robert Baratheon, inicia-se uma violenta guerra civil. As principais casas de Westeros utilizam diplomacia, traição e força militar para conquistar o poder:</p>
+            <ul>
+                <li><strong>Casa Stark:</strong> Focada na honra e na sobrevivência no Norte.</li>
+                <li><strong>Casa Lannister:</strong> Extremamente rica e disposta a tudo para manter o controle da coroa.</li>
+                <li><strong>Casa Baratheon e outras:</strong> Reivindicam o trono por direito de sangue ou conquista.</li>
+            </ul>
+
+                <h4>2. A Jornada de Daenerys Targaryen (Exílio).</h4>
+                <p>Em Essos, a última sobrevivente da antiga dinastia real busca reconstruir seu exército. Ela recebe três ovos de dragão que eclodem, tornando-se sua maior arma para atravessar o mar e retomar o que acredita ser seu por direito.</p>
+                
+                <br>
+            
+                <h4>3. A Ameaça dos Caminhantes Brancos (Fantasia).</h4>
+                <p>Enquanto os reinos brigam entre si, uma ameaça ancestral desperta no extremo Norte, além da <strong>Muralha</strong>. Os Caminhantes Brancos, um exército de mortos-vivos liderado pelo Rei da Noite, avançam para extinguir toda a vida humana.</p>
+                
+                <hr style="margin: 30px 0; border: 0; border-top: 1px solid darkgray;">
+                
+                <h2 id="temas">Temas Centrais.</h2>
+            <ul>
+                <li><strong>Realismo Político:</strong> Diferente de outras fantasias, os "bons" nem sempre vencem. A série é famosa por matar personagens protagonistas de forma inesperada.</li>
+                <li><strong>Cinismo e Poder:</strong> Explora como a busca pelo poder corrompe indivíduos e destrói famílias.</li>
+                <li><strong>Sobrevivência:</strong> O lema "O Inverno está Chegando" serve como um aviso constante de que as futilidades humanas não importam diante de uma catástrofe natural/mística.</li>
+            </ul>
+            
+                <h4>O Desfecho (Sem Spoilers).</h4>
+                <p>A série culmina na convergência desses três arcos: a disputa final pelo trono acontece simultaneamente à necessidade de uma aliança improvável para derrotar o exército dos mortos.</p>
+
+                <br>
+
+                <hr><br>
+
+                <h2 id="sinopse">Sinopse Detalhada.</h2>
+                <p><strong>Game of Thrones</strong> é um épico de fantasia que mistura política e misticismo. 
+                A trama se passa nos continentes de Westeros e Essos, focando na luta pelo Trono de Ferro.</p>
+                <p>Enquanto os reis brigam por poder, uma ameaça vinda do norte caminha para destruir o mundo dos homens. Paralelamente, a herdeira dos dragões prepara seu retorno triunfal.</p>
+                <figure>
+                    <img src="https://static.revistahaus.com.br/revistahaus/2017/03/201703/local-filmagem-game-of-thrones-haus-e1462123904852-28514b50.jpg" class="img-sinopsedet">
+                    <figcaption>Legenda: Imagem representativa da série.</figcaption>
+                </figure><br>
+                <h2 id="sinopse+">Sinopse +.</h2>
+                <p>A trama se passa nos continentes de <strong>Westeros</strong> e <strong>Essos</strong>, onde o verão pode durar décadas e o inverno uma vida inteira. A história segue as violentas lutas dinásticas entre as famílias nobres das Sete Cidades pelo controle do <strong>Trono de Ferro.</strong></p>
+                <p>Enquanto as casas Stark, Lannister e Baratheon se enfrentam em conspirações políticas e guerras civis pelo poder, duas ameaças maiores surgem em frentes opostas:</p>                
+                <ul>
+                    <li><strong>No Leste:</strong> Daenerys Targaryen, a última sobrevivente de uma dinastia exilada, busca reconstruir seu exército e chocar três ovos de dragão para retomar o reino que acredita ser seu por direito.</li>
+                    <li><strong>No Norte:</strong> Além da gigantesca <strong>Muralha</strong> de gelo, uma força ancestral de mortos-vivos, liderada pelo Rei da Noite, desperta para ameaçar a existência de toda a humanidade.</li>
+                </ul>
+                <p>A série é reconhecida por seu realismo político, onde as decisões morais têm consequências brutais e ninguém está seguro, forçando inimigos mortais a considerarem alianças improváveis diante da destruição iminente.</p><br>
+
+                <hr><br>
+
+                <section>
+                    <h2 id="producao">Produção.</h2>
+                    <p>A produção foi liderada por David Benioff e D.B. Weiss, que adaptaram a complexa obra de George R. R. Martin para a televisão.</p>
+                    <ul>
+                        <li><strong>Locações:</strong> Filmagens em países como Irlanda do Norte, Croácia e Islândia.</li>
+                        <li><strong>Impacto:</strong> A série detém o recorde de maior número de prémios Emmy para uma série de drama.</li>
+                    </ul>
+                    <p>A produção de <strong>Game of Thrones</strong>é considerada um dos marcos da história da televisão devido à sua escala cinematográfica e complexidade logística. Abaixo, detalho os principais pontos sobre como a série foi realizada:</p>
+                    <h3>1. Orçamento e Escala</h3>
+                    <ul>
+                        <li><strong>Investimento Crescente:</strong> A série começou com um orçamento de cerca de 6 milhões de dólares por episódio, mas esse valor subiu para 15 milhões de dólares por episódio na última temporada.</li>
+                        <li><strong>Fenómeno Muncial:</strong> Produzida pela HBO, a obra tornou-se uma das maiores propriedades intelectuais do mundo, vencendo inúmeros prémios Emmy.</li>
+                    </ul>
+                    
+                    <h3>2. Locações e Cenários.</h3>
+                    <p>Para dar vida aos diferentes reinos de Westeros e Essos, a produção viajou por diversos países:</p>                    
+                    <ul>
+                        <li><strong>Irlanda do Norte:</strong> Sede principal da produção e local usado para as cenas de Winterfell e do Norte.</li>
+                        <li><strong>Croácia (Dubrovnik):</strong> Serviu como o cenário icónico para Porto Real (King's Landing).</li>
+                        <li><strong>Islândia:</strong> Utilizada para as filmagens das paisagens geladas "Para Lá da Muralha".</li>
+                        <li><strong>Espanha e Marrocos:</strong> Locais escolhidos para representar as regiões mais quentes, como Dorne e as cidades de Essos visitadas por Daenerys.</li>                        
+                    </ul>
+
+                    <h3>3. Efeitos visuais e maquilhagem.</h3>
+                    <ul>
+                        <li><strong>Dragões e Batalhas:</strong> A série utilizou tecnologia de ponta (CGI) para criar os dragões de Daenerys e as sequências de batalhas massivas.</li>
+                        <li><strong>Caminhantes Brancos:</strong> Grande parte do aspeto dos Caminhantes Brancos e do Rei da Noite foi alcançada através de maquilhagem prostética complexa, levando horas para ser aplicada nos atores.</li>                        
+                    </ul>
+
+                    <h3>4. Desafios e Polémicas.</h3>
+                    <p>A produção não esteve isenta de dificuldades:</p>
+                    <ul>
+                        <li><strong>Vazamentos:</strong> A HBO enfrentou graves problemas com o vazamento de episódios antes da data de estreia oficial.</li>
+                        <li><strong>Final Divisivo:</strong>Final Divisivo: A última temporada gerou intensos debates entre fãs e críticos devido ao seu ritmo acelerado, tornando-se um dos pontos mais polémicos da história da produção.</li>
+                    </ul>
+
+                    <h3>5. Produzida por;</h3>
+                    <p>A série foi produzida pela HBO e tornou-se um fenômeno mundial.</p><br>
+
+                </section>
+
+                <hr><br>
+
+                <h2 id="curiosidades">Curiosidades Surpreendentes.</h2>
+
+                <ul>
+                    <li>🔥 Mais de 20 milhões de pessoas assistiram ao episódio final simultaneamente.</li>
+                    <li>🐉 Os dragões de Daenerys foram criados com CGI extremamente avançado.</li>
+                    <li>❄️ As cenas no Norte foram gravadas em temperaturas reais abaixo de zero.</li>
+                    <li>💀 Personagens principais morrem inesperadamente — ninguém está seguro.</li>
+                    <li>🏆 A série ganhou dezenas de prêmios Emmy, sendo uma das mais premiadas da história.</li>
+                </ul>
+
+                <hr><br>
+
+                <h2 id="personagens">Personagens Principais.</h2>
+                <ul>
+                    <li><strong>Jon Snow:</strong> Um guerreiro honrado com um destino misterioso.</li>
+                    <p>"O primeiro rosto da primeira fileira"</p>
+
+                    <li><strong>Daenerys Targaryen:</strong> A mãe dos draões e pretendente ao trono.</li>
+                    <p>"O sexto rosto da primeira fileira (terceiro a partir da direita)"</p>
+
+                    <li><strong>Tyrion Lannister:</strong> Inteligente, sarcástico e estrategista brilhante.</li>
+                    <p>"Não aparece na foto abaixo"</p>
+
+                    <li><strong>Cersei Lannister:</strong> Ambiciosa e implacável na busca pelo poder.</li>
+                    <p>"O quinto rosto da segunda fileira"</p>
+
+                    <li><strong>Arya Stark:</strong> Uma das personagens com maior evolução na série.</li>
+                    <p>"O terceiro rosto da primeira fileira"   </p>
+                </ul>
+                <figure>
+                    <img src="https://t2.tudocdn.net/293567?w=646&h=284" class="img-personagens"></imag>
+                    <figcaption>Confira abaixo os que mais aparecem na tela durante todas as temporadas:</figcaption>
+                    <img src="https://t2.tudocdn.net/293563?w=660&h=386" class="img-personagens"></imag>
+                    <figcaption>Mas as coisas mudam um pouco se olharmos os 10 personagens com mais tempo em tela por temporada, confira abaixo;</figcaption>
+                    <img src="https://t2.tudocdn.net/293564?w=1000&fit=clip" class="img-personagens"></imag>
+                    <figcaption>Mas e as casas? Qual é a que mais vemos na tela ao longo do tempo? Essa pergunta também já pode ser respondida, confira outra vez abaixo;</figcaption>
+                    <img src="https://t2.tudocdn.net/293565?w=1000&fit=clip" class="img-personagens"></imag>
+                    <figcaption>A história não muda muito quando falamos do tempo de aparição de cada casa por temporada, confira abaixo.</figcaption>
+                    <img src="https://t2.tudocdn.net/293566?w=1000&fit=clip" class="img-personagens"></imag>
+                </figure>
+
+                <hr><br>
+
+                <h2 id="frases">Frases Icônicas.</h2>
+                <ul>
+                    <li>"O inverno está chegando."</li>
+                    <li>"Um Lannister sempre paga suas dívidas."</li>
+                    <li>"Caos não é um buraco, é uma escada."</li>
+                    <li>"Dracarys!"</li>
+                </ul>
+
+                <hr><br>
+
+                <h2 id="numeros">Números da Série.</h2>
+                <ul>
+                    <li>📺 8 temporadas.</li>
+                    <li>🎬 73 episódios.</li>
+                    <li>💰 Até 15 milhões de dólares por episódio.</li>
+                    <li>🌍 Exibida em mais de 170 países.</li>
+                </ul>
+
+                <hr><br>
+
+                <h2 id="porque">Por que assistir Game of Thrones?</h2>
+                <p>
+                    Game of Thrones não é apenas uma série, é uma experiência completa. 
+                    Misturando política, batalhas épicas, personagens complexos e reviravoltas inesperadas, 
+                    ela prende o espectador do início ao fim.
+                </p>
+
+                <p>
+                    Se você gosta de histórias imprevisíveis, com alto nível de produção e enredos inteligentes,
+                    essa é uma das melhores séries já feitas.
+                </p><br>
+                
+                <hr><br>
+
+                <p>
+                    "Obrigado por acessar nossa pagina, espero que tenha gostado."
+                    <br>
+                </p>
+            </article>
+        </main>
+
+        <aside class="anchors" aria-label="Neste artigo">
+            <h3>Neste Artigo.</h3>
+            <ul>
+                <li><a href="#resumos">01.resumos.</a></li>
+                <li><a href="#temas">02.Temas.</a></li>
+                <li><a href="#sinopse">03.Sinopse Det..</a></li>
+                <li><a href="#sinopse+">04.Sinopse+.</a></li>
+                <li><a href="#producao">05.Produção.</a></li>
+                <li><a href="#curiosidades">06.Curiosidades.</a></li>
+                <li><a href="#personagens">07.Personagens.</a></li>
+                <li><a href="#frases">08.Frases.</a></li>
+                <li><a href="#numeros">09.Numeros.</a></li>
+                <li><a href="#porque">10.Porque.</a></li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 - Desafio de Recriação Semântica.</p>
+        <p>Marcos Vander Zani.</p>
+    </footer>
+
+</body>
+</html>

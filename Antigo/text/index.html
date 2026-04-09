@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Moderno - Game of Thrones</title>
+    <style>
+        /* Reset e Estrutura GERAL */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        header { border-bottom: 1px solid #ddd; padding: 10px; text-align: center; }
+        header img { max-width: 100%; height: auto; border-radius: 5px; }
+
+        .bar { height: 10px; background-color: #f4f4f4; border-bottom: 1px solid #ddd; }
+
+        .main-wrapper { display: flex; min-height: 80vh; }
+
+        /* MENU LATERAL */
+        .sidebar { flex: 1; padding: 20px; border-right: 1px solid #ddd; background-color: #f9f9f9; }
+        .sidebar ul { list-style: none; } /* Mantemos sem pontos no menu */
+        .sidebar li { margin-bottom: 10px; }
+        .sidebar a { text-decoration: none; color: #0645ad; font-weight: bold; }
+        .sidebar a:hover { text-decoration: underline; }
+
+        /* CONTEÚDO PRINCIPAL */
+        .main-content { flex: 4; padding: 40px; }
+        .main-content h2 { border-bottom: 1px solid #a2a9b1; margin-bottom: 15px; padding-bottom: 5px; }
+        .main-content h4 { margin: 20px 0 10px 0; color: #444; }
+        
+        /* O comando que atua no recuo e no espaçamento dos parágrafos */
+        .main-content p { 
+            text-align: justify; 
+            text-indent: 30px; 
+            margin-bottom: 20px; /* Substitui o <br> para dar espaço */
+        }
+
+        /* O comando que faz o ponto aparecer na lista do texto */
+        .main-content ul { 
+            list-style: disc; 
+            padding-left: 40px; 
+            margin-bottom: 20px; 
+        }
+
+        footer { padding: 20px; text-align: center; background: #eee; border-top: 1px solid #ddd; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://images.tcdn.com.br/img/img_prod/910692/1660940889_banner-categoria-got.jpg" alt="Banner GOT">
+    </header>
+
+    <div class="bar"></div>
+
+    <div class="main-wrapper">
+        <nav class="sidebar">
+            <h3>Navegação</h3>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="detalhes.html" target="_blank">Sinopse e Produção</a></li>
+                <li><a href="https://www.tudocelular.com/curiosidade/noticias/n101486/game-of-thrones-protagonistas.html" target="_blank">Elenco (Externo)</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <article>
+                <h2>Game of Thrones: Resumo da Série</h2>
+                <p>Game of Thrones é uma série épica de fantasia da HBO, baseada nos livros As Crônicas de Gelo e Fogo de George R. R. Martin. A trama se passa nos continentes de Westeros e Essos, onde diversas famílias nobres lutam pelo controle do Trono de Ferro.</p>
+                
+                <hr style="margin: 30px 0; border: 0; border-top: 1px solid #ddd;">
+
+                <h4>1. A Guerra dos Reis (Política)</h4>
+                <p>Após a morte do Rei Robert Baratheon, inicia-se uma violenta guerra civil. As principais casas de Westeros utilizam diplomacia, traição e força militar para conquistar o poder:</p>
+                <ul>
+                    <li><strong>Casa Stark:</strong> Focada na honra e na sobrevivência no Norte.</li>
+                    <li><strong>Casa Lannister:</strong> Extremamente rica e disposta a tudo para manter o controle da coroa.</li>
+                    <li><strong>Casa Baratheon:</strong> Reivindicam o trono por direito de sangue.</li>
+                </ul>
+
+                <h4>2. A Ameaça dos Caminhantes Brancos</h4>
+                <p>Enquanto os reinos brigam entre si, uma ameaça ancestral desperta no extremo Norte, além da Muralha. Os Caminhantes Brancos avançam para extinguir toda a vida humana.</p>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Projeto Estudantil de Programação</p>
+    </footer>
+
+</body>
+</html>
